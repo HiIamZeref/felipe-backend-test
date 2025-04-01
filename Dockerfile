@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1.2
+
 # Setting up my base image
 FROM golang:1.24.1-alpine
 
@@ -12,6 +14,8 @@ RUN go mod download
 
 # Copy source code
 COPY . .
+
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets.env
 
 # Build the Go app
 RUN go build -o gss-backend ./cmd
