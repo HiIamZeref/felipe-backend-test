@@ -15,7 +15,7 @@ RUN go mod download
 # Copy source code
 COPY . .
 
-RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets.env
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
 
 # Build the Go app
 RUN go build -o gss-backend ./cmd
